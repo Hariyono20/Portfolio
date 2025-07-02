@@ -160,7 +160,7 @@ export default function Hero() {
 
         <div className="mb-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
           <a
-            href="../../public/Images/CV.pdf"
+            href="/Images/CV.pdf"
             download
             className="flex items-center gap-2 px-6 py-3 text-white bg-violet-700 hover:bg-violet-800 dark:bg-violet-600 dark:hover:bg-violet-700 rounded-lg text-lg font-semibold shadow transition-all duration-300"
           >
