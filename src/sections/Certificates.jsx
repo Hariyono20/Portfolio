@@ -8,7 +8,7 @@ const certificates = [
     title: "Sertifikat Lomba 'Empowering Everyday Lives'",
     issuer: "HMSI UNJAYA",
     year: 2024,
-    image: "/public/Images/Lomba Ui:Ux 2024.png", 
+    image: "/Images/Lomba Ui:Ux 2024.png", 
     description:
       "Partisipasi sebagai Sie Pold dalam lomba UI/UX bertema 'Empowering Everyday Lives' yang diselenggarakan oleh Himpunan Mahasiswa Sistem Informasi UNJAYA.",
   },
@@ -16,7 +16,7 @@ const certificates = [
     title: "Mengembangkan Website bagi Calon Web Developer",
     issuer: "Program Kartu Prakerja – Cakap",
     year: 2023,
-    image: "/public/Images/sertifikat prakerja 2.pdf", 
+    image: "/Images/sertifikat prakerja 2.pdf", 
     description:
       "Pelatihan 15 jam mencakup kompetensi SKKNI No. 282 Tahun 2016 seperti algoritma pemrograman, pemrograman terstruktur, pengujian integrasi program, dan profiling program.",
   },
@@ -24,7 +24,7 @@ const certificates = [
     title: "Exabytes Developer Club Goes to Campus",
     issuer: "Exabytes Indonesia",
     year: 2023,
-    image: "/public/Images/Exabyte.jpeg",
+    image: "/Images/Exabyte.jpeg",
     description:
       "Mengikuti seminar 'Start Your Digital Universe with Website' yang diselenggarakan oleh Exabytes Indonesia di UNJAYA.",
   },
@@ -32,7 +32,7 @@ const certificates = [
     title: "Sertifikat Pertama Sertiva",
     issuer: "Sertiva",
     year: 2023,
-    image: "/public/Images/sertiva.jpeg",
+    image: "/Images/sertiva.jpeg",
     description:
       "Sertifikat penyelesaian pelatihan digital pertama dari platform Sertiva.",
   },
@@ -40,7 +40,7 @@ const certificates = [
     title: "Introduction to Data Science with Python",
     issuer: "DQLab",
     year: 2025,
-    image: "/public/Images/certificate-DQLABINTP1BVRWBN.pdf",
+    image: "/Images/certificate-DQLABINTP1BVRWBN.pdf",
     description:
       "Mempelajari dasar-dasar data science menggunakan Python, termasuk data wrangling dan visualisasi.",
   },
@@ -48,7 +48,7 @@ const certificates = [
     title: "Sertifikat Kepengurusan HMSI UNJAYA",
     issuer: "HMSI UNJAYA",
     year: 2024,
-    image: "/public/Images/Bento-2.png",
+    image: "/Images/Bento-2.png",
     description:
       "Kontribusi sebagai staf Kominfo di Himpunan Mahasiswa Sistem Informasi Universitas Jenderal Achmad Yani Yogyakarta periode 2023/2024.",
   },
