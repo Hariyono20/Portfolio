@@ -126,7 +126,6 @@ export default function Contact() {
         </div>
 
         {/* Kanan: Info Kontak + Work Hours */}
-        {/* Kanan: Info Kontak + Work Hours */}
         <div className="text-gray-800 dark:text-gray-200 flex flex-col justify-between">
           <div>
             <h3 className="text-3xl font-semibold mb-2">Get in Touch</h3>
@@ -167,7 +166,7 @@ export default function Contact() {
                 <div>
                   <p className="font-semibold">Phone</p>
                   <p className="text-gray-600 dark:text-gray-400">
-                    +62 812-3456-7890
+                    +62 889-8544-0982
                   </p>
                 </div>
               </div>
