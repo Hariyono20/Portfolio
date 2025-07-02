@@ -16,7 +16,7 @@ const certificates = [
     title: "Mengembangkan Website bagi Calon Web Developer",
     issuer: "Program Kartu Prakerja – Cakap",
     year: 2023,
-    image: "/public/Images/sertifikat prakerja 2.pdf", // Ubah dari .pdf ke .jpg
+    image: "/public/Images/sertifikat prakerja 2.pdf", 
     description:
       "Pelatihan 15 jam mencakup kompetensi SKKNI No. 282 Tahun 2016 seperti algoritma pemrograman, pemrograman terstruktur, pengujian integrasi program, dan profiling program.",
   },

@@ -69,9 +69,9 @@ export default function Hero() {
   ];
 
   const images = [
-    "/public/Images/WhatsApp Image 2025-06-24 at 18.19.03.jpeg",
-    "/public/Images/WhatsApp Image 2025-06-24 at 18.19.20.jpeg",
-    "/public/Images/WhatsApp Image 2025-06-24 at 18.19.02.jpeg",
+    "/Images/WhatsApp Image 2025-06-24 at 18.19.03.jpeg",
+    "/Images/WhatsApp Image 2025-06-24 at 18.19.20.jpeg",
+    "/Images/WhatsApp Image 2025-06-24 at 18.19.02.jpeg",
   ];
 
   const description =

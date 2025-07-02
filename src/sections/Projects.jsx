@@ -5,7 +5,7 @@ export default function Projects() {
       date: "2024",
       description:
         "Aplikasi pencarian lowongan kerja berbasis TF-IDF. Dibangun menggunakan React, Tailwind CSS, dan Flask.",
-      image: "../../public/Images/SF.png",
+      image: "/Images/SF.png",
       link: "https://github.com/Hariyono20/SmartJob-Finder",
     },
     {
@@ -13,7 +13,7 @@ export default function Projects() {
       date: "2024",
       description:
         "Aplikasi mobile apotek dengan fitur checkout, konsultasi, user & admin. Dibangun menggunakan Flutter, Flask, Dart, dan MongoDB.",
-      image: "../../public/Images/MEDISYNC.png",
+      image: "/Images/MEDISYNC.png",
       link: "https://github.com/Hariyono20/Apotek",
     },
     {
@@ -21,7 +21,7 @@ export default function Projects() {
       date: "2024",
       description:
         "Website layanan ambulans yang dibangun menggunakan Flask, HTML, dan CSS.",
-      image: "../../public/Images/CC.png",
+      image: "/Images/CC.png",
       link: "https://github.com/Hariyono20/CareConnect",
     },
     {
@@ -29,7 +29,7 @@ export default function Projects() {
       date: "2024",
       description:
         "Homepage sistem wisata pengguna menggunakan React, .",
-      image: "../../public/Images/TPP.png",
+      image: "/Images/TPP.png",
       link: "https://github.com/Hariyono20/tlogo-putri-pengguna",
     },
     {
@@ -37,7 +37,7 @@ export default function Projects() {
       date: "2024",
       description:
         "UI fitur akuntansi dan dashboard utama menggunakan React dan Tailwind CSS.",
-      image: "../../public/Images/TPF.png",
+      image: "/Images/TPF.png",
       link: "https://github.com/Hariyono20/tlogo-putri-fe",
     },
     {
@@ -45,7 +45,7 @@ export default function Projects() {
       date: "2025",
       description:
         "Website company profile komunitas motor. Dibangun menggunakan React, Tailwind CSS, Python, dan MySQL.",
-      image: "../../public/Images/CP.png",
+      image: "/Images/CP.png",
       link: "https://github.com/Hariyono20/motorclub-profile.git",
     },
   ];
