@@ -39,7 +39,7 @@ export default function Footer() {
               <FaWhatsapp />
             </a>
             <a
-              href="www.linkedin.com/in/bento-haryono-01a4ba257"
+              href="linkedin.com/in/bento-haryono-01a4ba257"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-400 transform hover:scale-110 hover:rotate-6 transition duration-300"

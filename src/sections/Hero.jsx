@@ -140,7 +140,7 @@ export default function Hero() {
               <FaInstagram size={24} />
             </a>
             <a
-              href="www.linkedin.com/in/bento-haryono-01a4ba257"
+              href="linkedin.com/in/bento-haryono-01a4ba257"
               target="_blank"
               rel="noopener noreferrer"
               className="text-black dark:text-white hover:text-violet-600 dark:hover:text-violet-400 transition-transform transform hover:scale-110"

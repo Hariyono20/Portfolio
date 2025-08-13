@@ -114,7 +114,7 @@ export default function About() {
                     icon: <FaLinkedin />,
                     label: (
                       <a
-                        href="www.linkedin.com/in/bento-haryono-01a4ba257"
+                        href="linkedin.com/in/bento-haryono-01a4ba257"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hover:underline"
