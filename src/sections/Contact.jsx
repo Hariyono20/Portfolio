@@ -215,7 +215,7 @@ export default function Contact() {
             {[
               {
                 icon: <FaLinkedin className="w-5 h-5" />,
-                href: "linkedin.com/in/bento-haryono-01a4ba257",
+                href: "https://www.linkedin.com/in/bento-haryono-01a4ba257",
                 label: "LinkedIn",
                 color: "text-blue-600",
                 hoverBg: "hover:bg-blue-600",
