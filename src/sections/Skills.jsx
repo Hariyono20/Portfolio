@@ -15,33 +15,24 @@ import {
   SiMongodb,
   SiPostgresql,
 } from "react-icons/si";
-import { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function CircularProgress({ percent, size = 100, strokeWidth = 8 }) {
-  const [progress, setProgress] = useState(0);
+// Circular progress dengan label level
+function CircularProgress({ level, size = 90, strokeWidth = 7 }) {
+  const levelMap = {
+    Beginner: 25,
+    Intermediate: 50,
+    Advanced: 75,
+    Expert: 100,
+  };
 
-  useEffect(() => {
-    let start = 0;
-    const duration = 1000; // total durasi animasi
-    const increment = percent / (duration / 16); // naik tiap frame
-    const interval = setInterval(() => {
-      start += increment;
-      if (start >= percent) {
-        start = percent;
-        clearInterval(interval);
-      }
-      setProgress(Math.round(start));
-    }, 16); // 60fps
-    return () => clearInterval(interval);
-  }, [percent]);
-
+  const percent = levelMap[level] || 50;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (progress / 100) * circumference;
+  const offset = circumference - (percent / 100) * circumference;
 
   return (
     <svg width={size} height={size} className="mx-auto">
@@ -63,17 +54,18 @@ function CircularProgress({ percent, size = 100, strokeWidth = 8 }) {
         r={radius}
         cx={size / 2}
         cy={size / 2}
+        className="transition-all duration-700 ease-in-out"
       />
       <text
         x="50%"
         y="50%"
         dominantBaseline="middle"
         textAnchor="middle"
-        fontSize="16"
-        fill="#3b82f6"
-        fontWeight="bold"
+        fontSize="11"
+        fill="#1e3a8a"
+        fontWeight="600"
       >
-        {progress}%
+        {level}
       </text>
     </svg>
   );
@@ -84,162 +76,190 @@ export default function Skills() {
     {
       name: "HTML",
       icon: <FaHtml5 className="text-orange-600" />,
-      percent: 90,
+      level: "Expert",
     },
-    { name: "CSS", icon: <FaCss3Alt className="text-blue-500" />, percent: 85 },
+    {
+      name: "CSS",
+      icon: <FaCss3Alt className="text-blue-500" />,
+      level: "Advanced",
+    },
     {
       name: "JavaScript",
       icon: <FaJs className="text-yellow-400" />,
-      percent: 66,
+      level: "Advanced",
     },
-    { name: "React", icon: <FaReact className="text-cyan-400" />, percent: 85 },
+    {
+      name: "React",
+      icon: <FaReact className="text-cyan-400" />,
+      level: "Advanced",
+    },
     {
       name: "Tailwind CSS",
       icon: <SiTailwindcss className="text-sky-400" />,
-      percent: 80,
+      level: "Advanced",
     },
     {
       name: "Python",
       icon: <FaPython className="text-yellow-500" />,
-      percent: 85,
+      level: "Advanced",
     },
-    { name: "MySQL", icon: <SiMysql className="text-blue-700" />, percent: 83 },
+    {
+      name: "MySQL",
+      icon: <SiMysql className="text-blue-700" />,
+      level: "Intermediate",
+    },
     {
       name: "SQL",
       icon: <SiPostgresql className="text-indigo-600" />,
-      percent: 78,
+      level: "Intermediate",
     },
     {
       name: "MongoDB",
       icon: <SiMongodb className="text-green-600" />,
-      percent: 80,
+      level: "Intermediate",
     },
-    { name: "Figma", icon: <FaFigma className="text-pink-500" />, percent: 80 },
+    {
+      name: "Figma",
+      icon: <FaFigma className="text-pink-500" />,
+      level: "Advanced",
+    },
     {
       name: "GitHub",
       icon: <FaGithub className="text-gray-800 dark:text-white" />,
-      percent: 85,
+      level: "Advanced",
     },
   ];
 
-  const avgPercent = Math.round(
-    skills.reduce((sum, s) => sum + s.percent, 0) / skills.length
-  );
+  // Hitung distribusi skill per level
+  const levelCount = skills.reduce((acc, s) => {
+    acc[s.level] = (acc[s.level] || 0) + 1;
+    return acc;
+  }, {});
 
   const chartData = {
-    labels: skills.map((s) => s.name),
+    labels: Object.keys(levelCount),
     datasets: [
       {
-        label: "Skill %",
-        data: skills.map((s) => s.percent),
-        backgroundColor: [
-          "#f97316",
-          "#3b82f6",
-          "#facc15",
-          "#22d3ee",
-          "#38bdf8",
-          "#eab308",
-          "#2563eb",
-          "#6366f1",
-          "#10b981",
-          "#ec4899",
-          "#6b7280",
-        ],
-        borderWidth: 1,
+        label: "Jumlah Skill",
+        data: Object.values(levelCount),
+        backgroundColor: ["#22c55e", "#3b82f6", "#facc15", "#ef4444"],
+        borderWidth: 0,
       },
     ],
   };
 
   const chartOptions = {
-    cutout: "83%",
+    cutout: "75%",
     plugins: {
-      legend: { display: false },
-      tooltip: {
-        callbacks: {
-          label: (tooltipItem) => `${tooltipItem.label}: ${tooltipItem.raw}%`,
-        },
-      },
+      legend: { position: "bottom", labels: { font: { size: 13 } } },
     },
-    animation: {
-      animateRotate: true,
-      duration: 1500,
-      easing: "easeInOutCubic",
-    },
-  };
-
-  const centerTextPlugin = {
-    id: "centerText",
-    beforeDraw: (chart) => {
-      const { width, height } = chart;
-      const ctx = chart.ctx;
-      ctx.restore();
-
-      const title = "Total Skill";
-      const subtitle = `${avgPercent}%`;
-
-      ctx.textBaseline = "middle";
-      ctx.textAlign = "center";
-
-      ctx.font = "bold 20px sans-serif";
-      ctx.fillStyle = "#1e3a8a";
-      ctx.fillText(title, width / 2, height / 2 - 15);
-
-      ctx.font = "bold 26px sans-serif";
-      ctx.fillStyle = "#3b82f6";
-      ctx.fillText(subtitle, width / 2, height / 2 + 20);
-
-      ctx.save();
-    },
+    animation: { animateRotate: true, duration: 1200 },
   };
 
   return (
     <section id="skills" className="py-24 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-4xl font-bold text-center text-gray-800 dark:text-white mb-14">
           Skills Overview
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
-          {/* Kiri: Skill Lingkaran */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* Skill Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
             {skills.map((skill, idx) => (
               <div
                 key={idx}
-                className="flex flex-col items-center bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform transition duration-300 hover:scale-105 cursor-pointer"
+                className="flex flex-col items-center bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl p-6 transform transition duration-300 hover:scale-105"
               >
-                <div className="text-4xl mb-3">{skill.icon}</div>
-                <CircularProgress percent={skill.percent} />
-                <p className="text-base font-medium text-gray-700 dark:text-gray-200 mt-3">
+                <div className="text-5xl mb-4">{skill.icon}</div>
+                <CircularProgress level={skill.level} />
+                <p className="mt-4 text-base font-semibold text-gray-800 dark:text-gray-200">
                   {skill.name}
                 </p>
               </div>
             ))}
           </div>
 
-          {/* Kanan: Diagram */}
-          <div className="flex flex-col items-center bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
-            <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6 self-start">
-              Statistik Visual
-            </h3>
+          {/* Statistik Chart */}
+          {/* Statistik Skill Modern */}
+          <div className="relative flex flex-col items-center bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-10 overflow-hidden">
+            {/* Background dekorasi */}
+            <div className="absolute top-0 right-0 w-40 h-40 bg-blue-200 dark:bg-blue-500 rounded-full blur-3xl opacity-30"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-purple-200 dark:bg-purple-500 rounded-full blur-3xl opacity-20"></div>
 
-            <div className="w-80 h-80 mb-6">
-              <Doughnut
-                data={chartData}
-                options={chartOptions}
-                plugins={[centerTextPlugin]}
-              />
+            {/* Judul */}
+            <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3 z-10">
+              Skill Level Distribution
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 text-sm mb-8 z-10 text-center max-w-sm">
+              Distribusi kemampuan berdasarkan level penguasaan. Grafik ini
+              menunjukkan seberapa banyak skill yang ada di tiap kategori.
+            </p>
+
+            {/* Chart Doughnut */}
+            <div className="relative w-72 h-72 mb-10 z-10">
+              <Doughnut data={chartData} options={chartOptions} />
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <span className="text-sm text-gray-500 dark:text-gray-400">
+                  Total
+                </span>
+                <span className="text-2xl font-extrabold text-blue-600 dark:text-blue-400">
+                  {skills.length} Skills
+                </span>
+              </div>
             </div>
 
-            {/* Nama dan logo skill di bawah diagram */}
-            <div className="flex flex-wrap justify-center gap-6 w-full">
-              {skills.map((skill, idx) => (
-                <div key={idx} className="flex items-center space-x-2">
-                  <div className="text-2xl">{skill.icon}</div>
-                  <span className="text-gray-700 dark:text-gray-300 font-medium">
-                    {skill.name}
-                  </span>
-                </div>
-              ))}
+            {/* Custom Legend Cards */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full mb-10 z-10">
+              {Object.keys(levelCount).map((level, idx) => {
+                const colors = ["#22c55e", "#3b82f6", "#facc15", "#8b5cf6"]; // Beginner, Intermediate, Advanced, Expert
+                return (
+                  <div
+                    key={idx}
+                    className="flex flex-col items-center bg-gray-50 dark:bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition"
+                  >
+                    <span
+                      className="w-4 h-4 rounded-full mb-2"
+                      style={{ backgroundColor: colors[idx] }}
+                    />
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-200">
+                      {level}
+                    </p>
+                    <p className="text-lg font-bold text-gray-900 dark:text-white">
+                      {levelCount[level]}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Extra: Progress Bar Distribusi */}
+            <div className="w-full space-y-4 z-10">
+              {Object.entries(levelCount).map(([level, count], idx) => {
+                const colors = ["#22c55e", "#3b82f6", "#facc15", "#8b5cf6"];
+                const percentage = Math.round((count / skills.length) * 100);
+                return (
+                  <div key={idx}>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span className="font-medium text-gray-700 dark:text-gray-200">
+                        {level}
+                      </span>
+                      <span className="text-gray-500 dark:text-gray-400">
+                        {percentage}%
+                      </span>
+                    </div>
+                    <div className="w-full h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-700"
+                        style={{
+                          width: `${percentage}%`,
+                          backgroundColor: colors[idx],
+                        }}
+                      ></div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

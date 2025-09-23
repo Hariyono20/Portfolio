@@ -1,14 +1,14 @@
 "use client";
 
-import { useRef } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useRef, useState } from "react";
+import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 
 const certificates = [
   {
     title: "Sertifikat Lomba 'Empowering Everyday Lives'",
     issuer: "HMSI UNJAYA",
     year: 2024,
-    image: "/Images/Lomba Ui:Ux 2024.png", 
+    image: "/Images/Lomba Ui:Ux 2024.png",
     description:
       "Partisipasi sebagai Sie Pold dalam lomba UI/UX bertema 'Empowering Everyday Lives' yang diselenggarakan oleh Himpunan Mahasiswa Sistem Informasi UNJAYA.",
   },
@@ -16,7 +16,7 @@ const certificates = [
     title: "Mengembangkan Website bagi Calon Web Developer",
     issuer: "Program Kartu Prakerja – Cakap",
     year: 2023,
-    image: "/Images/sertifikat prakerja 2.pdf", 
+    image: "/Images/sertifikat prakerja 2.pdf",
     description:
       "Pelatihan 15 jam mencakup kompetensi SKKNI No. 282 Tahun 2016 seperti algoritma pemrograman, pemrograman terstruktur, pengujian integrasi program, dan profiling program.",
   },
@@ -56,6 +56,7 @@ const certificates = [
 
 export default function Certificates() {
   const scrollRef = useRef(null);
+  const [selectedCert, setSelectedCert] = useState(null);
 
   const scroll = (direction) => {
     const scrollAmount = 320;
@@ -90,12 +91,13 @@ export default function Certificates() {
             {certificates.map((cert, i) => (
               <article
                 key={i}
-                className="min-w-[300px] max-w-[300px] bg-white dark:bg-gray-800 rounded-2xl shadow-lg flex-shrink-0 hover:scale-[1.03] transition-transform duration-300 snap-start"
+                className="min-w-[300px] max-w-[300px] bg-white dark:bg-gray-800 rounded-2xl shadow-lg flex-shrink-0 hover:scale-[1.03] transition-transform duration-300 snap-start cursor-pointer"
+                onClick={() => setSelectedCert(cert)}
               >
                 <img
                   src={cert.image}
-                  alt={`${cert.issuer} logo`}
-                  className="w-full h-40 object-contain bg-white dark:bg-gray-700 p-4"
+                  alt={`${cert.issuer} certificate`}
+                  className="w-full h-40 object-contain bg-white dark:bg-gray-700 p-4 rounded-t-2xl"
                 />
                 <div className="p-4 space-y-2">
                   <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -107,7 +109,7 @@ export default function Certificates() {
                   <p className="text-sm text-violet-700 dark:text-violet-300">
                     {cert.issuer}
                   </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
                     {cert.description}
                   </p>
                 </div>
@@ -125,6 +127,44 @@ export default function Certificates() {
           </button>
         </div>
       </div>
+
+      {/* Modal Gambar + Deskripsi */}
+      {selectedCert && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+          <div className="relative bg-white dark:bg-gray-800 rounded-xl max-w-5xl w-full p-6 shadow-lg grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Tombol Close */}
+            <button
+              className="absolute top-3 right-3 bg-gray-100 dark:bg-gray-700 rounded-full p-2 shadow hover:bg-violet-200"
+              onClick={() => setSelectedCert(null)}
+            >
+              <FaTimes className="text-gray-800 dark:text-white" />
+            </button>
+
+            {/* Gambar */}
+            <img
+              src={selectedCert.image}
+              alt="Certificate preview"
+              className="w-full max-h-[70vh] object-contain rounded-lg"
+            />
+
+            {/* Deskripsi */}
+            <div className="flex flex-col justify-center space-y-4">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                {selectedCert.year}
+              </p>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                {selectedCert.title}
+              </h3>
+              <p className="text-md text-violet-700 dark:text-violet-300 font-medium">
+                {selectedCert.issuer}
+              </p>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                {selectedCert.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
