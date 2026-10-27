@@ -407,7 +407,7 @@ export default function Hero() {
                     Bento Haryono
                   </p>
                   <p className="text-white/80 text-sm">
-                    Junior Frontend Developer
+                    Sistem Informasi
                   </p>
                   <p className="text-white/70 text-xs mt-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                     Klik untuk mengganti foto
