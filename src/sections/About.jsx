@@ -28,8 +28,8 @@ const personalInfo = [
   },
   {
     icon: FaEnvelope,
-    label: "bentohariyono00@gmail.com",
-    href: "mailto:bentohariyono00@gmail.com",
+    label: "bentoharriyono@gmail.com",
+    href: "mailto:bentoharriyono@gmail.com",
   },
   {
     icon: FaGraduationCap,

@@ -62,9 +62,9 @@ const contactInfo = [
   },
   {
     label: "Email",
-    value: "bentohariyono00@gmail.com",
+    value: "bentoharriyono@gmail.com",
     icon: FaEnvelope,
-    href: "mailto:bentohariyono00@gmail.com",
+    href: "mailto:bentoharriyono@gmail.com",
   },
   {
     label: "Phone",
@@ -114,7 +114,7 @@ export default function Footer() {
       "Membuka aplikasi email untuk menyiapkan permintaan berlangganan.",
     );
 
-    window.location.href = `mailto:bentohariyono00@gmail.com?subject=${encodeURIComponent(
+    window.location.href = `mailto:bentoharriyono@gmail.com?subject=${encodeURIComponent(
       subject,
     )}&body=${encodeURIComponent(body)}`;
   };

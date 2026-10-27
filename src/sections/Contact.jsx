@@ -29,10 +29,10 @@ const contactDetails = [
   },
   {
     title: "Email Address",
-    value: "bentohariyono00@gmail.com",
+    value: "bentoharriyono@gmail.com",
     icon: FaEnvelope,
     color: "orange",
-    href: "mailto:bentohariyono00@gmail.com",
+    href: "mailto:bentoharriyono@gmail.com",
   },
   {
     title: "Availability",
@@ -122,7 +122,7 @@ export default function Contact() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const recipient = "bentohariyono00@gmail.com";
+    const recipient = "bentoharriyono@gmail.com";
     const subject =
       form.subject.trim() || `Portfolio Contact - ${form.name.trim()}`;
 
