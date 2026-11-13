@@ -363,17 +363,6 @@ export default function Footer() {
               . All rights reserved.
             </p>
 
-            <p className="text-xs text-gray-500 dark:text-gray-400 sm:text-sm">
-              Built with{" "}
-              <span className="font-semibold text-blue-600 dark:text-blue-400">
-                React
-              </span>{" "}
-              &{" "}
-              <span className="font-semibold text-blue-600 dark:text-blue-400">
-                Tailwind CSS
-              </span>
-            </p>
-
             <motion.button
               type="button"
               onClick={scrollToTop}
