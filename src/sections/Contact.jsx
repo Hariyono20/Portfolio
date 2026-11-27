@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
@@ -38,7 +40,7 @@ const contactDetails = [
     title: "Availability",
     value: "Open to opportunities",
     icon: FaClock,
-    color: "violet",
+    color: "navy",
     href: null,
   },
 ];
@@ -48,8 +50,8 @@ const socialLinks = [
     label: "LinkedIn",
     icon: FaLinkedin,
     href: "https://www.linkedin.com/in/bento-haryono-01a4ba257",
-    hover: "hover:bg-blue-600 hover:border-blue-600",
-    color: "text-blue-600 dark:text-blue-400",
+    hover: "hover:bg-blue-700 hover:border-blue-700",
+    color: "text-blue-700 dark:text-blue-400",
   },
   {
     label: "GitHub",
@@ -70,7 +72,7 @@ const socialLinks = [
 
 const colorStyles = {
   blue: {
-    icon: "bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400",
+    icon: "bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400",
     border: "group-hover:border-blue-500/50",
   },
   green: {
@@ -81,14 +83,15 @@ const colorStyles = {
     icon: "bg-orange-50 text-orange-600 dark:bg-orange-500/10 dark:text-orange-400",
     border: "group-hover:border-orange-500/50",
   },
-  violet: {
-    icon: "bg-violet-50 text-violet-600 dark:bg-violet-500/10 dark:text-violet-400",
-    border: "group-hover:border-violet-500/50",
+  navy: {
+    icon: "bg-blue-50 text-blue-950 dark:bg-blue-400/10 dark:text-blue-300",
+    border:
+      "group-hover:border-blue-900/50 dark:group-hover:border-blue-400/50",
   },
 };
 
 export default function Contact() {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = Boolean(useReducedMotion());
 
   const [form, setForm] = useState({
     name: "",
@@ -100,8 +103,14 @@ export default function Contact() {
   const [feedback, setFeedback] = useState("");
 
   const fadeUp = {
-    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 24 },
-    visible: { opacity: 1, y: 0 },
+    hidden: {
+      opacity: 0,
+      y: shouldReduceMotion ? 0 : 24,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+    },
   };
 
   const transition = shouldReduceMotion
@@ -116,18 +125,21 @@ export default function Contact() {
       [name]: value,
     }));
 
-    if (feedback) setFeedback("");
+    if (feedback) {
+      setFeedback("");
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const recipient = "bentoharriyono@gmail.com";
+
     const subject =
       form.subject.trim() || `Portfolio Contact - ${form.name.trim()}`;
 
     const body = [
-      `Halo Bento,`,
+      "Halo Bento,",
       "",
       form.message.trim(),
       "",
@@ -150,7 +162,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="scroll-mt-24 overflow-hidden bg-gray-50 py-20 text-gray-900 dark:bg-gray-900 dark:text-gray-100 sm:py-24"
+      className="scroll-mt-24 overflow-hidden bg-gray-50 py-20 text-gray-900 transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100 sm:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section heading */}
@@ -160,19 +172,14 @@ export default function Contact() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.25 }}
           transition={transition}
-          className="mx-auto mb-14 max-w-2xl text-center"
+          className="mb-14 max-w-2xl text-left"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-blue-700 dark:border-blue-500/20 dark:bg-blue-500/10 dark:text-blue-400">
-            <FaEnvelope />
-            Contact Me
-          </span>
-
-          <h2 className="mt-5 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl">
-            Let&apos;s Work{" "}
-            <span className="text-blue-600 dark:text-blue-400">Together</span>
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl md:text-5xl">
+            Contact Me{" "}
+            
           </h2>
 
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-gray-600 dark:text-gray-400 sm:text-base">
+          <p className="mt-5 max-w-xl text-sm leading-7 text-gray-600 dark:text-gray-400 sm:text-base">
             Punya ide proyek, peluang kerja, atau ingin berdiskusi? Jangan ragu
             untuk menghubungi saya.
           </p>
@@ -189,7 +196,7 @@ export default function Contact() {
             className="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm shadow-gray-900/[0.03] dark:border-gray-700/80 dark:bg-gray-800/80 sm:p-8 lg:col-span-3 lg:p-9"
           >
             <div className="mb-7 flex items-start gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-xl text-blue-600 dark:bg-blue-500/10 dark:text-blue-400">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-xl text-blue-700 dark:bg-blue-500/10 dark:text-blue-400">
                 <FaPaperPlane />
               </div>
 
@@ -197,6 +204,7 @@ export default function Contact() {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white sm:text-2xl">
                   Send Me a Message
                 </h3>
+
                 <p className="mt-1 text-sm leading-6 text-gray-500 dark:text-gray-400">
                   Isi formulir berikut untuk menyiapkan pesan email.
                 </p>
@@ -210,7 +218,7 @@ export default function Contact() {
                     htmlFor="contact-name"
                     className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300"
                   >
-                    Nama <span className="text-blue-500">*</span>
+                    Nama <span className="text-blue-600">*</span>
                   </label>
 
                   <input
@@ -223,7 +231,7 @@ export default function Contact() {
                     autoComplete="name"
                     maxLength={100}
                     required
-                    className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3.5 text-sm text-gray-900 outline-none transition-all placeholder:text-gray-400 hover:border-gray-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-gray-600 dark:bg-gray-900/60 dark:text-white dark:placeholder:text-gray-500 dark:hover:border-gray-500 dark:focus:border-blue-400"
+                    className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3.5 text-sm text-gray-900 outline-none transition-all placeholder:text-gray-400 hover:border-gray-300 focus:border-blue-700 focus:ring-4 focus:ring-blue-500/10 dark:border-gray-600 dark:bg-gray-900/60 dark:text-white dark:placeholder:text-gray-500 dark:hover:border-gray-500 dark:focus:border-blue-400"
                   />
                 </div>
 
@@ -232,7 +240,7 @@ export default function Contact() {
                     htmlFor="contact-email"
                     className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300"
                   >
-                    Email <span className="text-blue-500">*</span>
+                    Email <span className="text-blue-600">*</span>
                   </label>
 
                   <input
@@ -245,7 +253,7 @@ export default function Contact() {
                     autoComplete="email"
                     maxLength={254}
                     required
-                    className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3.5 text-sm text-gray-900 outline-none transition-all placeholder:text-gray-400 hover:border-gray-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-gray-600 dark:bg-gray-900/60 dark:text-white dark:placeholder:text-gray-500 dark:hover:border-gray-500 dark:focus:border-blue-400"
+                    className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3.5 text-sm text-gray-900 outline-none transition-all placeholder:text-gray-400 hover:border-gray-300 focus:border-blue-700 focus:ring-4 focus:ring-blue-500/10 dark:border-gray-600 dark:bg-gray-900/60 dark:text-white dark:placeholder:text-gray-500 dark:hover:border-gray-500 dark:focus:border-blue-400"
                   />
                 </div>
               </div>
@@ -266,7 +274,7 @@ export default function Contact() {
                   value={form.subject}
                   onChange={handleChange}
                   maxLength={150}
-                  className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3.5 text-sm text-gray-900 outline-none transition-all placeholder:text-gray-400 hover:border-gray-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-gray-600 dark:bg-gray-900/60 dark:text-white dark:placeholder:text-gray-500 dark:hover:border-gray-500 dark:focus:border-blue-400"
+                  className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3.5 text-sm text-gray-900 outline-none transition-all placeholder:text-gray-400 hover:border-gray-300 focus:border-blue-700 focus:ring-4 focus:ring-blue-500/10 dark:border-gray-600 dark:bg-gray-900/60 dark:text-white dark:placeholder:text-gray-500 dark:hover:border-gray-500 dark:focus:border-blue-400"
                 />
               </div>
 
@@ -275,7 +283,7 @@ export default function Contact() {
                   htmlFor="contact-message"
                   className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300"
                 >
-                  Pesan <span className="text-blue-500">*</span>
+                  Pesan <span className="text-blue-600">*</span>
                 </label>
 
                 <textarea
@@ -287,7 +295,7 @@ export default function Contact() {
                   rows={5}
                   maxLength={5000}
                   required
-                  className="w-full resize-y rounded-xl border border-gray-200 bg-gray-50 px-4 py-3.5 text-sm leading-6 text-gray-900 outline-none transition-all placeholder:text-gray-400 hover:border-gray-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-gray-600 dark:bg-gray-900/60 dark:text-white dark:placeholder:text-gray-500 dark:hover:border-gray-500 dark:focus:border-blue-400"
+                  className="w-full resize-y rounded-xl border border-gray-200 bg-gray-50 px-4 py-3.5 text-sm leading-6 text-gray-900 outline-none transition-all placeholder:text-gray-400 hover:border-gray-300 focus:border-blue-700 focus:ring-4 focus:ring-blue-500/10 dark:border-gray-600 dark:bg-gray-900/60 dark:text-white dark:placeholder:text-gray-500 dark:hover:border-gray-500 dark:focus:border-blue-400"
                 />
 
                 <p className="mt-2 text-right text-xs text-gray-400 dark:text-gray-500">
@@ -299,7 +307,7 @@ export default function Contact() {
                 <p
                   role="status"
                   aria-live="polite"
-                  className="rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm leading-6 text-blue-800 dark:border-blue-500/20 dark:bg-blue-500/10 dark:text-blue-300"
+                  className="rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm leading-6 text-blue-900 dark:border-blue-500/20 dark:bg-blue-500/10 dark:text-blue-300"
                 >
                   {feedback}
                 </p>
@@ -309,7 +317,7 @@ export default function Contact() {
                 type="submit"
                 whileHover={shouldReduceMotion ? undefined : { y: -2 }}
                 whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
-                className="group flex w-full items-center justify-center gap-3 rounded-xl bg-blue-600 px-5 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-500/30"
+                className="group flex w-full items-center justify-center gap-3 rounded-xl bg-blue-950 px-5 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-950/15 transition-colors hover:bg-blue-900 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-500/30 dark:bg-blue-800 dark:hover:bg-blue-700"
               >
                 <FaPaperPlane className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
                 Open Email to Send
@@ -361,13 +369,14 @@ export default function Contact() {
                         <p className="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
                           {title}
                         </p>
+
                         <p className="mt-1 break-words text-sm font-semibold leading-6 text-gray-800 dark:text-gray-200">
                           {value}
                         </p>
                       </div>
 
                       {href && (
-                        <FaArrowRight className="shrink-0 text-xs text-gray-400 transition-all duration-300 group-hover:translate-x-1 group-hover:text-blue-600 dark:group-hover:text-blue-400" />
+                        <FaArrowRight className="shrink-0 text-xs text-gray-400 transition-all duration-300 group-hover:translate-x-1 group-hover:text-blue-700 dark:group-hover:text-blue-400" />
                       )}
                     </>
                   );
