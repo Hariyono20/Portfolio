@@ -72,9 +72,7 @@ function SectionHeading({ reduceMotion }) {
       viewport={{ once: true }}
       className="mb-12 max-w-2xl sm:mb-14"
     >
-      <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-blue-900 dark:text-blue-400">
-        Get to Know Me
-      </p>
+  
 
       <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl md:text-5xl">
         About <span className="text-blue-900 dark:text-blue-400">Me</span>
@@ -122,12 +120,6 @@ function ProfileCard({ reduceMotion }) {
               Universitas Jenderal Achmad Yani Yogyakarta
             </span>
           </p>
-
-          <div className="mt-4 flex justify-center">
-            <span className="rounded-md bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-900 dark:bg-blue-400/10 dark:text-blue-300">
-              Junior Frontend Developer
-            </span>
-          </div>
         </div>
       </div>
 

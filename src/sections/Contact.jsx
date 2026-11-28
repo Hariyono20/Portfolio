@@ -175,9 +175,9 @@ export default function Contact() {
           className="mb-14 max-w-2xl text-left"
         >
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl md:text-5xl">
-            Contact Me{" "}
-            
+            Contact <span className="text-blue-900 dark:text-blue-400">Me</span>
           </h2>
+  
 
           <p className="mt-5 max-w-xl text-sm leading-7 text-gray-600 dark:text-gray-400 sm:text-base">
             Punya ide proyek, peluang kerja, atau ingin berdiskusi? Jangan ragu
